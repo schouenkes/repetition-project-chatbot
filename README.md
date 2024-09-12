@@ -1,4 +1,4 @@
-# Repetition project.chatbot
+# Repetition project chatbot
 
 This is a repetition for the second assignment from Technigo (https://github.com/Technigo/project-chatbot/tree/main).
 It's to practice basic JavaScript, interacting with the DOM and how to create and use functions.
