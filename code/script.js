@@ -89,9 +89,30 @@ const createNameInput = () => {
   form.innerHTML = `
   <input type="text" class="text-input" id="userNameInput"/>
   <button class="send-button" id="sendButton" type="button">Send</button>`;
+
+  const nameInput = document.getElementById("userNameInput");
+  const submitButton = document.getElementById("sendButton");
+
+  submitButton.addEventListener("click", () => getUsername(nameInput));
+  nameInput.addEventListener(
+    "keypress",
+    (handleEnter = (event) => {
+      if (event.key === "Enter") {
+        getUsername(nameInput);
+        event.preventDefault();
+      }
+    })
+  );
 };
 
-const getUsername = () => {};
+const getUsername = (nameinput) => {
+  const username = nameinput.value;
+  if (username === "") {
+    showBotMessage("Please, enter your name in the input field.");
+  } else {
+    showUserMessage(`${username}`);
+  }
+};
 
 showWelcomeScreen();
 
