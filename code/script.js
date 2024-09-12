@@ -13,19 +13,23 @@ const createWelcomeScreen = () => {
 
   const introTextBox = document.createElement("div");
   introTextBox.className = "intro-text-box";
+  introTextBox.innerHTML = `
+  <h1>Welcome</h1>
+  <p>Want to see a movie?</p>
+  <p>Click on a seat and let us continue the booking.</p>`;
   introBox.appendChild(introTextBox);
 
-  const introTitle = document.createElement("h2");
-  introTitle.textContent = "Welcome";
-  introTextBox.appendChild(introTitle);
+  // const introTitle = document.createElement("h2");
+  // introTitle.textContent = "Welcome";
+  // introTextBox.appendChild(introTitle);
 
-  const welcomeText1 = document.createElement("p");
-  welcomeText1.textContent = "Want to see a movie?";
-  introTextBox.appendChild(welcomeText1);
+  // const welcomeText1 = document.createElement("p");
+  // welcomeText1.textContent = "Want to see a movie?";
+  // introTextBox.appendChild(welcomeText1);
 
-  const welcomeText2 = document.createElement("p");
-  welcomeText2.textContent = "Click on a seat and let us continue the booking.";
-  introTextBox.appendChild(welcomeText2);
+  // const welcomeText2 = document.createElement("p");
+  // welcomeText2.textContent = "Click on a seat and let us continue the booking.";
+  // introTextBox.appendChild(welcomeText2);
 
   const buttonBox = document.createElement("div");
   buttonBox.className = "movieseat-box";
@@ -81,11 +85,13 @@ const startChat = () => {
   createNameInput();
 };
 
-createNameInput = () => {
+const createNameInput = () => {
   form.innerHTML = `
   <input type="text" class="text-input" id="userNameInput"/>
   <button class="send-button" id="sendButton" type="button">Send</button>`;
 };
+
+const getUsername = () => {};
 
 showWelcomeScreen();
 
