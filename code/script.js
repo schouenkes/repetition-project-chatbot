@@ -1,4 +1,6 @@
 const welcomeScreen = document.getElementById("welcomeScreen");
+const chatBox = document.getElementById("chatBox");
+const form = document.getElementById("formArea");
 
 const showWelcomeScreen = () => {
   createWelcomeScreen();
@@ -65,8 +67,24 @@ const generateSeatButtons = () => {
   });
 };
 
+const showBotMessage = (message) => {
+  chatBox.innerHTML += message;
+};
+
+const showUserMessage = (message) => {
+  chatBox.innerHTML += message;
+};
+
 const startChat = () => {
   welcomeScreen.remove();
+  showBotMessage("Welcome to The Movie House! I'm Bob, what's your name?");
+  createNameInput();
+};
+
+createNameInput = () => {
+  form.innerHTML = `
+  <input type="text" class="text-input" id="userNameInput"/>
+  <button class="send-button" id="sendButton" type="button">Send</button>`;
 };
 
 showWelcomeScreen();
