@@ -35,29 +35,38 @@ const createWelcomeScreen = () => {
 
 const generateSeatButtons = () => {
   const movieSeatBox = document.getElementById("seatBox");
-  
+
   movieSeatBox.innerHTML = "";
 
-  let movieSeatButton;
+  let movieSeatButtons;
   const screenWidth = window.innerWidth;
 
   if (screenWidth <= 380) {
-    movieSeatButton = 70;
+    movieSeatButtons = 70;
   } else if (screenWidth <= 480) {
-    movieSeatButton = 66;
+    movieSeatButtons = 66;
   } else if (screenWidth <= 600) {
-    movieSeatButton = 50;
+    movieSeatButtons = 50;
   } else {
-    movieSeatButton = 60;
+    movieSeatButtons = 60;
   }
 
-  for (i = 0; i < movieSeatButton; i++) {
+  for (i = 0; i < movieSeatButtons; i++) {
     const seatButton = document.createElement("button");
     seatButton.className = "seat-button";
     seatButton.type = "button";
     seatButton.textContent = "x";
     movieSeatBox.appendChild(seatButton);
   }
+
+  seatButtons = document.querySelectorAll(".seat-button");
+  seatButtons.forEach((seatButton) => {
+    seatButton.addEventListener("click", startChat);
+  });
+};
+
+const startChat = () => {
+  welcomeScreen.remove();
 };
 
 showWelcomeScreen();
