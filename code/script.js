@@ -140,6 +140,66 @@ const createGenreButtons = () => {
 const showGenreChoice = (genre) => {
   form.innerHTML = "";
   showUserMessage(`I want to see a ${genre} movie`);
+  setTimeout(() => createMovieOptions(genre), 1100);
+};
+
+const createMovieOptions = (genre) => {
+  const comedyMovies = ["We're the Millers", "The Hangover", "Dumb and dumber"];
+  const romanticMovies = ["The Notebook", "Five feet apart", "A star is born"];
+  const kidsMovies = ["Inside out", "Sing", "Moana"];
+  const fantasyMovies = ["Damsel", "Avatar", "Wicked"];
+
+  const customSelect = document.createElement("div");
+  customSelect.className = "custom-select";
+  form.appendChild(customSelect);
+
+  const selectButton = document.createElement("button");
+  selectButton.className = "select-button";
+  selectButton.type = "button";
+  selectButton.innerHTML = `Choose a movie from the list <span class="arrow">&darr;</span>`;
+  customSelect.appendChild(selectButton);
+
+  const selectList = document.createElement("ul");
+  selectList.className = "select-list";
+  customSelect.appendChild(selectList);
+
+  const createMovieOption = (movie) => {
+    const selectOptions = document.createElement("li");
+    selectOptions.className = "select-option";
+    selectOptions.textContent = movie;
+    selectList.appendChild(selectOptions);
+
+    selectOptions.addEventListener("click", () => showMovieChoice(movie));
+  };
+
+  switch (genre) {
+    case "comedy":
+      comedyMovies.forEach(createMovieOption);
+      break;
+    case "romantic":
+      romanticMovies.forEach(createMovieOption);
+      break;
+    case "kids":
+      kidsMovies.forEach(createMovieOption);
+      break;
+    case "fantasy":
+      fantasyMovies.forEach(createMovieOption);
+      break;
+    default:
+      showBotMessage(`You need to choose a movie in the list`);
+      break;
+  }
+
+  const toggleSelectList = () => {
+    selectList.style.display = selectList.style.display === "block" ? "none" : "block";
+  };
+
+  selectButton.addEventListener("click", toggleSelectList);
+};
+
+const showMovieChoice = (movie) => {
+  formArea.innerHTML = "";
+  showUserMessage(`I want to see ${movie}`);
 };
 
 showWelcomeScreen();
