@@ -93,7 +93,7 @@ const createNameInput = () => {
   const nameInput = document.getElementById("userNameInput");
   const submitButton = document.getElementById("sendButton");
 
-  submitButton.addEventListener("click", () => getUsername(nameInput));
+  submitButton.addEventListener("click", () => showUsername(nameInput));
   nameInput.addEventListener(
     "keypress",
     (handleEnter = (event) => {
@@ -105,13 +105,34 @@ const createNameInput = () => {
   );
 };
 
-const getUsername = (nameinput) => {
+const showUsername = (nameinput) => {
+  form.innerHTML = "";
   const username = nameinput.value;
   if (username === "") {
     showBotMessage("Please, enter your name in the input field.");
   } else {
     showUserMessage(`${username}`);
+    setTimeout(createGenreButtons, 1100);
+    setTimeout(() => showBotMessage(`Hello ${username}, what genre are you up for?`), 1100);
   }
+};
+
+const createGenreButtons = () => {
+  const genres = ["comedy", "romantic", "kids", "fantasy"];
+
+  genres.forEach((genre) => {
+    genreButton = document.createElement("button");
+    genreButton.className = "option-buttons";
+    genreButton.type = "button";
+    genreButton.textContent = genre;
+    form.appendChild(genreButton);
+
+    genreButton.addEventListener("click", () => showGenreChoice(genre));
+  });
+};
+
+const showGenreChoice = (genre) => {
+  showUserMessage(`I want to see a ${genre} movie`);
 };
 
 showWelcomeScreen();
