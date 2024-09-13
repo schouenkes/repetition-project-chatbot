@@ -106,11 +106,11 @@ const createNameInput = () => {
 };
 
 const showUsername = (nameinput) => {
-  form.innerHTML = "";
   const username = nameinput.value;
   if (username === "") {
     showBotMessage("Please, enter your name in the input field.");
   } else {
+    form.innerHTML = "";
     showUserMessage(`${username}`);
     setTimeout(createGenreButtons, 1100);
     setTimeout(() => showBotMessage(`Hello ${username}, what genre are you up for?`), 1100);
@@ -132,6 +132,7 @@ const createGenreButtons = () => {
 };
 
 const showGenreChoice = (genre) => {
+  form.innerHTML = "";
   showUserMessage(`I want to see a ${genre} movie`);
 };
 
