@@ -98,7 +98,7 @@ const createNameInput = () => {
     "keypress",
     (handleEnter = (event) => {
       if (event.key === "Enter") {
-        getUsername(nameInput);
+        showUsername(nameInput);
         event.preventDefault();
       }
     })
