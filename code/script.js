@@ -234,8 +234,21 @@ const createTimeOptions = (genre, movie) => {
     timeButton.textContent = time;
     form.appendChild(timeButton);
 
-    timeButton.addEventListener("click", () => returnChosenTime(time, movie));
+    timeButton.addEventListener("click", () => showTimeChoice(time, movie));
   });
+};
+
+const showTimeChoice = (time, movie) => {
+  showUserMessage(`I want to book ${time}`);
+  formArea.innerHTML = "";
+  setTimeout(() => confirmBooking(time, movie), 1100);
+};
+
+const confirmBooking = (time, movie) => {
+  showBotMessage(
+    `I have booked a seat for ${movie} on ${time}. We looking forward to have you and we will have the popcorn ready for you!`
+  );
+  form.innerHTML = "";
 };
 
 showWelcomeScreen();
