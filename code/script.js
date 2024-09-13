@@ -73,10 +73,16 @@ const generateSeatButtons = () => {
 
 const showBotMessage = (message) => {
   chatBox.innerHTML += ` <div class="bot-message"><p>${message}</p></div>`;
+  scrollToLatestMessage();
 };
 
 const showUserMessage = (message) => {
   chatBox.innerHTML += ` <div class="user-message"><p>${message}</p></div>`;
+  scrollToLatestMessage();
+};
+
+const scrollToLatestMessage = () => {
+  chatBox.scrollTop = chatBox.scrollHeight;
 };
 
 const startChat = () => {
