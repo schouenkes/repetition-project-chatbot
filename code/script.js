@@ -19,18 +19,6 @@ const createWelcomeScreen = () => {
   <p>Click on a seat and let us continue the booking.</p>`;
   introBox.appendChild(introTextBox);
 
-  // const introTitle = document.createElement("h2");
-  // introTitle.textContent = "Welcome";
-  // introTextBox.appendChild(introTitle);
-
-  // const welcomeText1 = document.createElement("p");
-  // welcomeText1.textContent = "Want to see a movie?";
-  // introTextBox.appendChild(welcomeText1);
-
-  // const welcomeText2 = document.createElement("p");
-  // welcomeText2.textContent = "Click on a seat and let us continue the booking.";
-  // introTextBox.appendChild(welcomeText2);
-
   const buttonBox = document.createElement("div");
   buttonBox.className = "movieseat-box";
   buttonBox.id = "seatBox";
@@ -141,6 +129,7 @@ const showGenreChoice = (genre) => {
   form.innerHTML = "";
   showUserMessage(`I want to see a ${genre} movie`);
   setTimeout(() => createMovieOptions(genre), 1100);
+  setTimeout(() => showBotMessage(`Nice, what movie do you want to see?`), 1100);
 };
 
 const createMovieOptions = (genre) => {
@@ -169,7 +158,7 @@ const createMovieOptions = (genre) => {
     selectOptions.textContent = movie;
     selectList.appendChild(selectOptions);
 
-    selectOptions.addEventListener("click", () => showMovieChoice(movie));
+    selectOptions.addEventListener("click", () => showMovieChoice(movie, genre));
   };
 
   switch (genre) {
@@ -197,9 +186,48 @@ const createMovieOptions = (genre) => {
   selectButton.addEventListener("click", toggleSelectList);
 };
 
-const showMovieChoice = (movie) => {
+const showMovieChoice = (movie, genre) => {
   formArea.innerHTML = "";
   showUserMessage(`I want to see ${movie}`);
+  setTimeout(() => getTime(genre, movie), 1100);
+  setTimeout(
+    () =>
+      showBotMessage(`${movie} is a good choice!  
+    when do you want to see the movie?`),
+    1100
+  );
+};
+
+const getTime = (genre, movie) => {
+  let times = [];
+
+  switch (genre) {
+    case "kids":
+      times = ["Tuesday 17:00", "Thursday 18:00", "Friday 19:00", "Saturday 20:00"];
+      break;
+    case "comedy":
+      times = ["Monday 19:00", "Thursday 19:00", "Friday 20:00", "Saturday 21:00"];
+      break;
+    case "romantic":
+      times = ["Monday 19:00", "Wednesday 19:00", "Friday 20:00", "Sunday 19:00"];
+      break;
+    case "fantasy":
+      times = ["Wednesday 19:00", "Friday 20:00", "Saturday 21:00", "Sunday 20:00"];
+      break;
+    default:
+      showBotMessage(`You need to choose a movie in the list`);
+      break;
+  }
+
+  times.forEach((time) => {
+    const timeButton = document.createElement("button");
+    timeButton.className = "option-buttons";
+    timeButton.type = "button";
+    timeButton.textContent = time;
+    formArea.appendChild(timeButton);
+
+    timeButton.addEventListener("click", () => returnChosenTime(time, movie));
+  });
 };
 
 showWelcomeScreen();
