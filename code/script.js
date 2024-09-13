@@ -72,11 +72,11 @@ const generateSeatButtons = () => {
 };
 
 const showBotMessage = (message) => {
-  chatBox.innerHTML += message;
+  chatBox.innerHTML += ` <div class="bot-message"><p>${message}</p></div>`;
 };
 
 const showUserMessage = (message) => {
-  chatBox.innerHTML += message;
+  chatBox.innerHTML += ` <div class="user-message"><p>${message}</p></div>`;
 };
 
 const startChat = () => {
