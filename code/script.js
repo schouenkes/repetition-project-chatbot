@@ -106,9 +106,13 @@ const showUsername = (nameinput) => {
   } else {
     form.innerHTML = "";
     showUserMessage(`${username}`);
-    setTimeout(createGenreButtons, 1100);
-    setTimeout(() => showBotMessage(`Hello ${username}, what genre are you up for?`), 1100);
+    setTimeout(() => getMovieGenre(username), 1100);
   }
+};
+
+const getMovieGenre = (username) => {
+  createGenreButtons();
+  showBotMessage(`Hello ${username}, what genre are you up for?`);
 };
 
 const createGenreButtons = () => {
@@ -128,8 +132,12 @@ const createGenreButtons = () => {
 const showGenreChoice = (genre) => {
   form.innerHTML = "";
   showUserMessage(`I want to see a ${genre} movie`);
-  setTimeout(() => createMovieOptions(genre), 1100);
-  setTimeout(() => showBotMessage(`Nice, what movie do you want to see?`), 1100);
+  setTimeout(() => getMovieChoice(genre), 1100);
+};
+
+const getMovieChoice = (genre) => {
+  createMovieOptions(genre);
+  showBotMessage(`Nice, what movie do you want to see?`);
 };
 
 const createMovieOptions = (genre) => {
@@ -187,18 +195,18 @@ const createMovieOptions = (genre) => {
 };
 
 const showMovieChoice = (movie, genre) => {
-  formArea.innerHTML = "";
+  form.innerHTML = "";
   showUserMessage(`I want to see ${movie}`);
-  setTimeout(() => getTime(genre, movie), 1100);
-  setTimeout(
-    () =>
-      showBotMessage(`${movie} is a good choice!  
-    when do you want to see the movie?`),
-    1100
-  );
+  setTimeout(() => getTimeChoice(genre, movie), 1100);
 };
 
-const getTime = (genre, movie) => {
+const getTimeChoice = (genre, movie) => {
+  createTimeOptions(genre, movie);
+  showBotMessage(`${movie} is a good choice!  
+    when do you want to see the movie?`);
+};
+
+const createTimeOptions = (genre, movie) => {
   let times = [];
 
   switch (genre) {
@@ -224,7 +232,7 @@ const getTime = (genre, movie) => {
     timeButton.className = "option-buttons";
     timeButton.type = "button";
     timeButton.textContent = time;
-    formArea.appendChild(timeButton);
+    form.appendChild(timeButton);
 
     timeButton.addEventListener("click", () => returnChosenTime(time, movie));
   });
