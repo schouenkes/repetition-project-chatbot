@@ -1,12 +1,15 @@
-const welcomeScreen = document.getElementById("welcomeScreen");
-const chatBox = document.getElementById("chatBox");
-const form = document.getElementById("formArea");
+const contentBox = document.getElementById("contentBox");
 
 const showWelcomeScreen = () => {
   createWelcomeScreen();
 };
 
 const createWelcomeScreen = () => {
+  const welcomeScreen = document.createElement("div");
+  welcomeScreen.className = "welcome-screen";
+  welcomeScreen.id = "welcomeScreen";
+  contentBox.appendChild(welcomeScreen);
+
   const introBox = document.createElement("div");
   introBox.className = "introbox";
   welcomeScreen.appendChild(introBox);
@@ -60,26 +63,40 @@ const generateSeatButtons = () => {
 };
 
 const showBotMessage = (message) => {
+  const chatBox = document.getElementById("chatBox");
   chatBox.innerHTML += ` <div class="bot-message"><p>${message}</p></div>`;
   scrollToLatestMessage();
 };
 
 const showUserMessage = (message) => {
+  const chatBox = document.getElementById("chatBox");
   chatBox.innerHTML += ` <div class="user-message"><p>${message}</p></div>`;
   scrollToLatestMessage();
 };
 
 const scrollToLatestMessage = () => {
+  const chatBox = document.getElementById("chatBox");
   chatBox.scrollTop = chatBox.scrollHeight;
 };
 
 const startChat = () => {
+  const chatBox = document.createElement("section");
+  chatBox.className = "chatbox";
+  chatBox.id = "chatBox";
+  contentBox.appendChild(chatBox);
+
+  const form = document.createElement("form");
+  form.id = "formArea";
+  contentBox.appendChild(form);
+
   welcomeScreen.remove();
   showBotMessage("Welcome to The Movie House! I'm Bob, what's your name?");
   createNameInput();
 };
 
 const createNameInput = () => {
+  const form = document.getElementById("formArea");
+
   form.innerHTML = `
   <input type="text" class="text-input" id="userNameInput"/>
   <button class="send-button" id="sendButton" type="button">Send</button>`;
@@ -104,6 +121,7 @@ const showUsername = (nameinput) => {
   if (username === "") {
     showBotMessage("Please, enter your name in the input field.");
   } else {
+    const form = document.getElementById("formArea");
     form.innerHTML = "";
     showUserMessage(`${username}`);
     setTimeout(() => getMovieGenre(username), 1100);
@@ -116,6 +134,8 @@ const getMovieGenre = (username) => {
 };
 
 const createGenreButtons = () => {
+  const form = document.getElementById("formArea");
+
   const genres = ["comedy", "romantic", "kids", "fantasy"];
 
   genres.forEach((genre) => {
@@ -130,6 +150,8 @@ const createGenreButtons = () => {
 };
 
 const showGenreChoice = (genre) => {
+  const form = document.getElementById("formArea");
+
   form.innerHTML = "";
   showUserMessage(`I want to see a ${genre} movie`);
   setTimeout(() => getMovieChoice(genre), 1100);
@@ -141,6 +163,8 @@ const getMovieChoice = (genre) => {
 };
 
 const createMovieOptions = (genre) => {
+  const form = document.getElementById("formArea");
+
   const comedyMovies = ["We're the Millers", "The Hangover", "Dumb and dumber"];
   const romanticMovies = ["The Notebook", "Five feet apart", "A star is born"];
   const kidsMovies = ["Inside out", "Sing", "Moana"];
@@ -195,6 +219,8 @@ const createMovieOptions = (genre) => {
 };
 
 const showMovieChoice = (movie, genre) => {
+  const form = document.getElementById("formArea");
+
   form.innerHTML = "";
   showUserMessage(`I want to see ${movie}`);
   setTimeout(() => getTimeChoice(genre, movie), 1100);
@@ -207,6 +233,8 @@ const getTimeChoice = (genre, movie) => {
 };
 
 const createTimeOptions = (genre, movie) => {
+  const form = document.getElementById("formArea");
+
   let times = [];
 
   switch (genre) {
@@ -245,10 +273,22 @@ const showTimeChoice = (time, movie) => {
 };
 
 const confirmBooking = (time, movie) => {
+  const form = document.getElementById("formArea");
+
   showBotMessage(
     `I have booked a seat for ${movie} on ${time}. We looking forward to have you and we will have the popcorn ready for you!`
   );
   form.innerHTML = "";
+  setTimeout(recreateWelcomeScreen, 5000);
+};
+
+const recreateWelcomeScreen = () => {
+  const form = document.getElementById("formArea");
+  const chatBox = document.getElementById("chatBox");
+  chatBox.remove();
+  form.remove();
+
+  showWelcomeScreen();
 };
 
 showWelcomeScreen();
