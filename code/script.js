@@ -74,6 +74,19 @@ const showUserMessage = (message) => {
   scrollToLatestMessage();
 };
 
+const showTyping = () => {
+  const chatBox = document.getElementById("chatBox");
+
+  const dotsBox = document.createElement("div");
+  dotsBox.id = "typingBubble";
+  dotsBox.innerHTML = `<div class="typing-bubble">
+  <p class="dot">.</p>
+  <p class="dot">.</p>
+  <p class="dot">.</p>
+  </div>`;
+  chatBox.appendChild(dotsBox);
+};
+
 const scrollToLatestMessage = () => {
   const chatBox = document.getElementById("chatBox");
   chatBox.scrollTop = chatBox.scrollHeight;
@@ -124,11 +137,15 @@ const showUsername = (nameinput) => {
     const form = document.getElementById("formArea");
     form.innerHTML = "";
     showUserMessage(`${username}`);
-    setTimeout(() => getMovieGenre(username), 1100);
+    setTimeout(showTyping, 400);
+    setTimeout(() => getMovieGenre(username), 3000);
   }
 };
 
 const getMovieGenre = (username) => {
+  const dotsBox = document.getElementById("typingBubble");
+
+  dotsBox.remove();
   createGenreButtons();
   showBotMessage(`Hello ${username}, what genre are you up for?`);
 };
@@ -154,10 +171,13 @@ const showGenreChoice = (genre) => {
 
   form.innerHTML = "";
   showUserMessage(`I want to see a ${genre} movie`);
-  setTimeout(() => getMovieChoice(genre), 1100);
+  setTimeout(showTyping, 400);
+  setTimeout(() => getMovieChoice(genre), 3000);
 };
 
 const getMovieChoice = (genre) => {
+  const dotsBox = document.getElementById("typingBubble");
+  dotsBox.remove();
   createMovieOptions(genre);
   showBotMessage(`Nice, what movie do you want to see?`);
 };
@@ -223,10 +243,14 @@ const showMovieChoice = (movie, genre) => {
 
   form.innerHTML = "";
   showUserMessage(`I want to see ${movie}`);
-  setTimeout(() => getTimeChoice(genre, movie), 1100);
+  setTimeout(showTyping, 400);
+  setTimeout(() => getTimeChoice(genre, movie), 3000);
 };
 
 const getTimeChoice = (genre, movie) => {
+  const dotsBox = document.getElementById("typingBubble");
+  dotsBox.remove();
+
   createTimeOptions(genre, movie);
   showBotMessage(`${movie} is a good choice!  
     when do you want to see the movie?`);
@@ -269,10 +293,14 @@ const createTimeOptions = (genre, movie) => {
 const showTimeChoice = (time, movie) => {
   showUserMessage(`I want to book ${time}`);
   formArea.innerHTML = "";
-  setTimeout(() => confirmBooking(time, movie), 1100);
+  setTimeout(showTyping, 400);
+  setTimeout(() => confirmBooking(time, movie), 3000);
 };
 
 const confirmBooking = (time, movie) => {
+  const dotsBox = document.getElementById("typingBubble");
+  dotsBox.remove();
+
   const form = document.getElementById("formArea");
 
   showBotMessage(

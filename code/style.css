@@ -99,6 +99,22 @@ h2 {
   font-size: 40px;
 }
 
+.dot {
+  font-size: 45px;
+  align-self: center;
+  margin-bottom: 20px;
+  animation: fadingicon 2s infinite;
+}
+
+@keyframes fadingicon {
+  to {
+    color: black;
+  }
+  from {
+    color: #c2c1c1;
+  }
+}
+
 .text-input {
   height: 50px;
   border: 1px solid #2d0204;
@@ -202,6 +218,15 @@ button {
   width: 45%;
   align-self: flex-end;
   margin-top: 5px;
+}
+
+.typing-bubble {
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0 25px 25px 25px;
+  padding: 10px;
+  width: 60px;
+  height: 40px;
 }
 
 @media (min-width: 381px) {
