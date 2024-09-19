@@ -8,3 +8,5 @@ It's to practice basic JavaScript, interacting with the DOM and how to create an
 The assignment is to build a functional chatbot interface using JavaScript, HTML, and CSS. The chatbot can interact with users, ask questions, display messages, and respond with precision.
 
 ### View it live
+
+https://movie-booking-chat.netlify.app/

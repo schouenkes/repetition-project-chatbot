@@ -139,10 +139,6 @@ h2 {
   margin-left: 3px;
 }
 
-button {
-  border: none;
-}
-
 .seat-button {
   background-color: #211d1d;
   color: #211d1d;
@@ -157,6 +153,7 @@ button {
   height: 50px;
   background-color: #7a0000;
   color: #fff;
+  border: none;
   font-size: 14px;
 }
 
