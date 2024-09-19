@@ -93,6 +93,8 @@ const scrollToLatestMessage = () => {
 };
 
 const startChat = () => {
+  const welcomeScreen = document.getElementById("welcomeScreen");
+
   const chatBox = document.createElement("section");
   chatBox.className = "chatbox";
   chatBox.id = "chatBox";
